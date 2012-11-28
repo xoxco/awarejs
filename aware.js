@@ -42,7 +42,7 @@
 					return str+'s';
 				}
 			}
-			
+						
 			function relativeTimestamp(ms) {
 				var seconds = Math.floor(ms / 1000);
 
@@ -110,10 +110,12 @@
 				
 				var settings = {
 					dateAttribute: 'data-pubDate',
-					permalinkClass: '.permalink',
 					bufferTime: 60*60*1000 // by default, leave things new if they are an hour old or less
 
 				}				
+
+				var reader = {};
+
 				
 				$.extend(settings,options);
 				
@@ -126,17 +128,27 @@
 				if (!lastVisit) {
 					setLastVisit(now);
 					$('body').addClass('first-visit');
+					reader.lastVisit = now;
+					reader.firstVisit = true;
+					reader.secondsSinceLastVisit = 0;
+					window.reader = reader;
+				
 					return;
 				} else {
 					lastVisit = new Date(lastVisit);
+					reader.lastVisit = lastVisit;
 				}
 
 				if (lastVisit.getDOY() < now.getDOY()) {
 					$('body').addClass('first-visit-of-day');
 					$('body').addClass('repeat-visitor');
+					reader.firstVisitOfDay = true;
+					reader.repeatVisitor = true;
+
 				} else {
 					if (!$('body').hasClass('first-visit')) {
 						$('body').addClass('repeat-visitor');
+						reader.repeatVisitor = true;
 					}
 				}
 				
@@ -156,6 +168,12 @@
 					
 				});
 
+
+				reader.secondsSinceLastVisit = Math.floor((now-lastVisit)/1000);
+				reader.timeSinceLastVisit = relativeTimestamp(now-lastVisit);
+
+				window.reader = reader;
+				
 				setLastVisit(now);
 			}			
 		
