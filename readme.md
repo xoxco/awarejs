@@ -4,7 +4,7 @@
 Aware.js is a simple jQuery plugin that allows a site to customize and personalize the display of content based on a reader's behavior
 without requiring login, authentication, or any server-side processing.
 
-[Read about the concept of "reader aware design."](notes.xoxco.com/post/36089202908/reader-aware-design)
+[Read about the concept of "reader aware design."](http://notes.xoxco.com/post/36089202908/reader-aware-design)
 
 [View Demo of Aware.js in action.](http://xoxco.com/projects/code/aware/demo.html) This demo uses Aware.js and CSS only to drastically alter the layout an otherwise static page in three different ways based on the reader's personalized relationship with the content.
 
