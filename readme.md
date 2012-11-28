@@ -74,7 +74,7 @@ Highlight new elements by using the .new class in your CSS:
 
 Inspired by the Andre Torrez's image sharing site, [Mlkshk](http://mlkshk.com), Aware.js also provides a method for inserting relative bookmarks into the stream of content to clearly delineate content added since the reader's last visit. [See demo.](demo.html)
 
-![Shkmark Demo](shkmark_example.png)
+![Shkmark Demo](http://xoxco.com/projects/code/aware/shkmark_example.png)
 
 To inject a relative bookmark *below the last new post*, call the deferentially named *shkmark()* function after calling *aware()*. The relative bookmark will include the message, "You started reading here *timestamp* ago."
 
