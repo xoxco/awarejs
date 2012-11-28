@@ -11,10 +11,11 @@ without requiring login, authentication, or any server-side processing.
 Created by [XOXCO](http://xoxco.com)
 
 
-## Get it
+## Download
 
 [Get it from Github](https://github.com/xoxco/awarejs)
 
+Aware.js is released under the MIT Open Source license. It's free to use, and you can use it however you want!
 
 ## Instructions
 
