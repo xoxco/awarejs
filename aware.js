@@ -8,7 +8,9 @@
 				by Ben Brown ben@xoxco.com
 			*/
 
-			var lastVisit = false;
+			var lastVisit = false,
+				setLastVisit,
+				getLastVisit;
 
 			/* Helpful little date helper here! */
 			Date.prototype.getDOY = function() {
@@ -16,24 +18,56 @@
 				return Math.ceil((this - onejan) / 86400000);
 			}
 			
-			function setLastVisit(date) {
-				if (window.localStorage) {					
-					window.localStorage.setItem('lastVisit',date);
-				} else {
-					// fix this
-					// set a cookie
-				}
+			
+			/* Browser fallback stack from https://github.com/marcuswestin/store.js */
+			function usesLocalStorage(){
+				try { return !!('localStorage' in window && window.localStorage); }
+				catch(err){ return false }
+			}
+			function usesGlobalStorage(){
+				try { return !!('globalStorage' in window && window.globalStorage); }
+				catch(err){ return false }
 			}
 			
-	
-			function getLastVisit() {
-				if (window.localStorage) {
-					return window.localStorage.getItem('lastVisit');
-				} else {
-					// fix this
-					// return from cookie
+			if (usesLocalStorage()){
+				setLastVisit = function(date) { window.localStorage.setItem('lastVisit',date); }
+				getLastVisit = function() { return window.localStorage.getItem('lastVisit'); }
+			} else if (usesGlobalStorage()){
+				setLastVisit = function(date) { window.globalStorage[window.location.hostname]['lastVisit'] = date; }
+				getLastVisit = function(){ return window.globalStorage[window.location.hostname]['lastvisit']; }
+			} else if (window.document.documentElement.addBehavior){
+				var storageContainer,
+					storageOwner,
+					elem;
+				try {
+					storageContainer = new ActiveXObject('htmlfile');
+					storageContainer.open();
+					storageContainer.write('<s' + 'cript>document.w=window</s' + 'cript><iframe src="/favicon.ico></iframe>');
+					storageContainer.close();
+					storageOwner = storageContainer.w.frames[0].document;
+					elem = storageOwner.createElement('div');
+				} catch(e){
+					elem = window.document.createElement('div');
+					storageOwner = window.document.body;
+				}
+				setLastVisit = function(date){
+					storageOwner.appendChild(elem);
+					elem.addBehavior('#default#userData');
+					elem.load('localStorage');
+					elem.setAttribute('lastVisit', date);
+					elem.save('localStorage');
+					storageOwner.removeChild(elem);
+				}
+				getLastVisit = function(){
+					storageOwner.appendChild(elem);
+					elem.addBehavior('#default#userData');
+					elem.load('localStorage');
+					var result = elem.getAttribute('lastVisit');
+					storageOwner.removeChild(elem);
+					return result;
 				}
 			}
+
 			
 			function pluralizeString(num,str) {
 				if (num==1) {
