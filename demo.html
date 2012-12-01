@@ -1,13 +1,8 @@
+<!DOCTYPE html>
+<html>
 <head>
 	<title>Reader Aware Design Demo</title>
-	<script src="http://xoxco.com/js/jquery.min.js"></script>
-	<script src="aware.js"></script>
-	<script>
-		$(function() {
-			$('.post,#links li,#featured li').aware();
-			$('.post').shkmark();
-		});
-	</script>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 	<style>
 		body { margin: 0; }
 		a:visited { color: #000; }
@@ -213,7 +208,14 @@
 </head>
 
 <body>
-
+	<script src="http://xoxco.com/js/jquery.min.js"></script>
+	<script src="aware.js"></script>
+	<script>
+		$(function() {
+			$('.post,#links li,#featured li').aware();
+			$('.post').shkmark();
+		});
+	</script>
 	<div style="background: #5DACE2; color: #FFF; padding: 5px; text-align: right;">
 		Powered by Aware.js: <a href="http://xoxco.com/projects/code/aware/">Get the code</a>
 	</div>
@@ -392,5 +394,5 @@
 	</ul>
 	
 	</div>
-
 </body>
+</html>
