@@ -9,6 +9,7 @@
 			*/
 
 			var lastVisit = false;
+			var cookieRegex = new RegExp("(?:^|.*;\\s*)lastVisit\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*");
 
 			/* Helpful little date helper here! */
 			Date.prototype.getDOY = function() {
@@ -20,8 +21,7 @@
 				if (window.localStorage) {					
 					window.localStorage.setItem('lastVisit',date);
 				} else {
-					// fix this
-					// set a cookie
+					document.cookie = 'lastVisit=' + escape(date) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/";
 				}
 			}
 			
@@ -30,8 +30,8 @@
 				if (window.localStorage) {
 					return window.localStorage.getItem('lastVisit');
 				} else {
-					// fix this
-					// return from cookie
+					var maybeLastVisit = unescape(document.cookie.replace(cookieRegex, "$1"));
+					return !isNaN(new Date(maybeLastVisit)) ? maybeLastVisit : null;
 				}
 			}
 			
