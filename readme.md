@@ -93,10 +93,11 @@ There are additional classes for smaller slices of the day:
 		.evening
 		.night
 		.latenight
+		.early
 		
 In addition, the *reader* object contains this same information:
 
-	reader.time_of_day - earlymorning, latemorning, noonish,earlyevening,evening,night, or latenight
+	reader.time_of_day - early,earlymorning, latemorning, noonish,earlyevening,evening,night, or latenight
 	reader.morning - true/false
 	reader.afternoon - true/false
 	reader.daytime - true/false
