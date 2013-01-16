@@ -8,6 +8,10 @@ without requiring login, authentication, or any server-side processing.
 
 [View Demo of Aware.js in action.](http://xoxco.com/projects/code/aware/demo.html) This demo uses Aware.js and CSS only to drastically alter the layout an otherwise static page in three different ways based on the reader's personalized relationship with the content.
 
+Aware also provides a handy method for personalizing the display of content based on the time of day. 
+
+[View Demo of Aware's time of day feature.](http://xoxco.com/projects/code/aware/time_of_day.html) This demo uses Aware.js and CSS only to change the mood of a page depending on what time it is.
+
 Created by [XOXCO](http://xoxco.com)
 
 
@@ -71,9 +75,10 @@ Highlight new elements by using the .new class in your CSS:
 		background: #FFFF99;
 	}
 
-** Tracks the reader's local time of day
+**Track the reader's local time of day**
 
 What if your site could look different during breakfast than it does late at night? Aware.js adds CSS classes based on the time of day.
+Consider how your visitor's needs might be different as the natural cycle of the day progresses.
 
 Is the sun out? Or is it dark? Aware.js adds a class for daytime and nighttime:
 

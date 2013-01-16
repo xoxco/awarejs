@@ -22,7 +22,7 @@
 		}	
 		
 		h1 { 
-			font-size: 60px;
+			font-size: 40px;
 		}
 		
 		#time_of_day { 
@@ -58,7 +58,9 @@
 			background-image: -webkit-linear-gradient( #333 0%,#f1d97a 90%);
 		}
 		
-		body.earlymorning h1 { 
+		body.earlymorning h1, 
+		body.earlymorning h2 { 
+
 			color: #FFF;
 		}		
 		
@@ -84,7 +86,9 @@
 			background-color: #333;
 		}
 
-		body.nighttime h1 {
+		body.nighttime h1,
+		body.nighttime h2 {
+
 			color: #610a8d;
 		}
 		body.nighttime a {
@@ -105,9 +109,16 @@
 		}		
 		
 		body.latenight h1 { 
+
 			color:fuchsia;
 		}
+		body.latenight h2 { 
 
+			color: #e806f7;
+		}
+		body.latenight a {
+			color:  #07ff56;
+		}
 
 
 	</style>
@@ -151,13 +162,20 @@
 		<h1 class="afternoon">Good Afternoon!</h1>
 		<h1 class="nighttime">Good Evening!</h1>
 
-		<h1>The design of this page responds to the time it is where you're sitting right now.</h1>
+		<h1>
+			The design of this page<Br/>
+			responds to the time<br/>
+			where you're sitting right now.</h1>
 		<form>
-		<p>Change the time</p>
-		<p id="time">12:00</p>
-		<input id="time_of_day" type="range" min="0" max="24" />
+			<p>Change the time</p>
+			<p id="time">12:00</p>
+			<input id="time_of_day" type="range" min="0" max="24" />
 		</form>
-		<h1>How?</h1>
+		<h2>Alter the layout or content of your site<br />
+			based on the time of day<br />
+			and a host of other "reader aware" attributes<br />
+			with no server side code:
+		</h2>
 		<h1><a href="http://xoxco.com/projects/code/aware/">$().aware();</a></h1>
 	</div>
 </body>
