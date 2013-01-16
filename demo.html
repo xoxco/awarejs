@@ -9,12 +9,32 @@
 		});
 	</script>
 	<style>
-		body { margin: 0; }
+		body { 
+			margin: 0;  
+			font-family: helvetica;
+
+		}
 		a:visited { color: #000; }
 		
-		div,p,li,blockquote {
-			font-family: helvetica;
+		
+		body.morning {
+			background: -webkit-linear-gradient(#f1d97a 0%, #ffffff 8%)
+			
 		}
+
+		body.nighttime {
+			background: #333;
+			color: #FFF;
+		}
+		
+		body.nighttime a {
+			color: #FFF;
+		}		
+
+		body.nighttime .post.new h2 {
+			background: rgba(200,0,200,0.5);	
+		}
+		
 		h1,h2,h3,h4 {
 			font-family: serif;
 		}
@@ -158,7 +178,7 @@
 		}
 		
 		.intro {
-			background: #F0F0F0;
+			background: rgba(255,255,255,0.5);
 			border-bottom: 1px dashed #CCC;
 			padding: 20px; 
 		}

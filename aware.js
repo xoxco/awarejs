@@ -132,42 +132,102 @@
 					reader.firstVisit = true;
 					reader.secondsSinceLastVisit = 0;
 					window.reader = reader;
-				
-					return;
 				} else {
 					lastVisit = new Date(lastVisit);
 					reader.lastVisit = lastVisit;
-				}
 
-				if (lastVisit.getDOY() < now.getDOY()) {
-					$('body').addClass('first-visit-of-day');
-					$('body').addClass('repeat-visitor');
-					reader.firstVisitOfDay = true;
-					reader.repeatVisitor = true;
-
-				} else {
-					if (!$('body').hasClass('first-visit')) {
+					if (lastVisit.getDOY() < now.getDOY()) {
+						$('body').addClass('first-visit-of-day');
 						$('body').addClass('repeat-visitor');
+						reader.firstVisitOfDay = true;
 						reader.repeatVisitor = true;
+	
+					} else {
+						if (!$('body').hasClass('first-visit')) {
+							$('body').addClass('repeat-visitor');
+							reader.repeatVisitor = true;
+						}
 					}
 				}
 				
-				this.each(function() {
-					// find the date element
-					var postDate = $(this).attr(settings.dateAttribute);
-					if (postDate) {
-						var arr = postDate.split(/[- :]/);
-					    postTimestamp = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
-						if (postTimestamp > lastVisit-settings.bufferTime) {
-							$(this).addClass('new');
-						} else {
-							$(this).addClass('seen');
-						}
-
-					}
+				// What time of day is it? 
+				// Is it sunny or dark?
+				// Is it lunch time? Or late night?
+				/* 
+				
+					4-7 early morning
+					7-11 morning / breakfast time
+					11-13 noonish / lunch time
+					13-16 afternoon
+					16-19 early evening
+					19-21 evening / dinner time
+					21-23 night
+					23-4 latenight
 					
-				});
+					7-19 daytime
+					19-7 nighttime
+								
+				*/
+				var time_of_day = new Date().getHours();
+				if (time_of_day >= 4 && time_of_day < 7) {
+					reader.time_of_day = 'earlymorning';
+					reader.morning = true;
+				} else if (time_of_day >= 7 && time_of_day < 11) {
+					reader.time_of_day = 'latemorning';
+					reader.morning = true;
+				} else if (time_of_day >= 11 && time_of_day < 13) {
+					reader.time_of_day = 'noonish';
+					reader.afternoon = true;
+					reader.lunchtime = true; // this is an illusion.
+				} else if (time_of_day >= 13 && time_of_day < 16) {
+					reader.time_of_day = 'afternoon';
+					reader.afternoon = true;
+				} else if (time_of_day >= 16 && time_of_day < 19) {
+					reader.time_of_day = 'earlyevening';
+					reader.afternoon = true;
+				} else if (time_of_day >= 19 && time_of_day < 21) {
+					reader.time_of_day = 'evening';
+				} else if (time_of_day >= 21 && time_of_day < 23) {
+					reader.time_of_day = 'night';
+				} else if (time_of_day >= 23 || time_of_day < 4) {
+					reader.time_of_day = 'latenight';
+				}
+				
+				if (time_of_day >= 7 && time_of_day <19) {
+					reader.daytime = true;
+					$('body').addClass('daytime');
 
+				} else {
+					reader.nighttime = true;
+					$('body').addClass('nighttime');
+				}
+
+				if (reader.morning) {
+					$('body').addClass('morning');
+				}
+				if (reader.afternoon) {
+					$('body').addClass('afternoon');
+				}
+				
+				$('body').addClass(reader.time_of_day);
+				
+				if (!reader.firstVisit) {
+					this.each(function() {
+						// find the date element
+						var postDate = $(this).attr(settings.dateAttribute);
+						if (postDate) {
+							var arr = postDate.split(/[- :]/);
+						    postTimestamp = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+							if (postTimestamp > lastVisit-settings.bufferTime) {
+								$(this).addClass('new');
+							} else {
+								$(this).addClass('seen');
+							}
+	
+						}
+						
+					});
+				}
 
 				reader.secondsSinceLastVisit = Math.floor((now-lastVisit)/1000);
 				reader.timeSinceLastVisit = relativeTimestamp(now-lastVisit);

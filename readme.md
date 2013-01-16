@@ -70,6 +70,38 @@ Highlight new elements by using the .new class in your CSS:
 	.post.new {
 		background: #FFFF99;
 	}
+
+** Tracks the reader's local time of day
+
+What if your site could look different during breakfast than it does late at night? Aware.js adds CSS classes based on the time of day.
+
+Is the sun out? Or is it dark? Aware.js adds a class for daytime and nighttime:
+
+	.daytime
+	.nighttime
+
+There are additional classes for smaller slices of the day:
+
+	.daytime
+		.morning
+			.earlymorning
+			.latemorning
+		.afternoon
+			.noonish
+			.earlyevening
+	.nighttime
+		.evening
+		.night
+		.latenight
+		
+In addition, the *reader* object contains this same information:
+
+	reader.time_of_day - earlymorning, latemorning, noonish,earlyevening,evening,night, or latenight
+	reader.morning - true/false
+	reader.afternoon - true/false
+	reader.daytime - true/false
+	reader.nighttime - true/false
+
 	
 **Insert Relative Bookmark**
 
