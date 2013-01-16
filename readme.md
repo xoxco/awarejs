@@ -73,7 +73,7 @@ Highlight new elements by using the .new class in your CSS:
 	
 **Insert Relative Bookmark**
 
-Inspired by the Andre Torrez's image sharing site, [Mlkshk](http://mlkshk.com), Aware.js also provides a method for inserting relative bookmarks into the stream of content to clearly delineate content added since the reader's last visit. [See demo.](demo.html)
+Inspired by the Andre Torrez's image sharing site, [Mlkshk](http://mlkshk.com), Aware.js also provides a method for inserting relative bookmarks into the stream of content to clearly delineate content added since the reader's last visit. [See demo.](http://xoxco.com/projects/code/aware/demo.html)
 
 ![Shkmark Demo](http://xoxco.com/projects/code/aware/shkmark_example.png)
 
