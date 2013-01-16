@@ -31,8 +31,8 @@
 		
 		#time {
 			font-weight: bold;
-			font-size: 24px;
-			font-family: monospace;
+			font-size: 60px;
+			margin:0;
 		}
 
 /* Hide messages by default */
@@ -126,9 +126,9 @@
 	<script>
 		$(function() {
 			function showTime(time) {
-				m = 'am';
+				m = ' AM';
 				if (time >= 12 && time < 24) {
-					m = 'pm';
+					m = ' PM';
 				}
 				if (time > 12) {
 					time -= 12;
@@ -136,7 +136,7 @@
 				if (time == 0) {
 					time = 12;
 				}
-				time = time + ':00'+m;
+				time = time +m;
 				$('#time').html(time);
 			}
 			
@@ -168,7 +168,7 @@
 			where you're sitting right now.</h1>
 		<form>
 			<p>Change the time</p>
-			<p id="time">12:00</p>
+			<p id="time">12</p>
 			<input id="time_of_day" type="range" min="0" max="24" />
 		</form>
 		<h2>Alter the layout or content of your site<br />
@@ -176,6 +176,6 @@
 			and a host of other "reader aware" attributes<br />
 			with no server side code:
 		</h2>
-		<h1><a href="http://xoxco.com/projects/code/aware/">$().aware();</a></h1>
+		<h1><a href="http://xoxco.com/projects/code/aware/">Aware.js</a></h1>
 	</div>
 </body>
